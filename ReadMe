@@ -1,7 +1,0 @@
-// Toujours ajouter en haut de ses fichier .php 
-
-    require_once __DIR__ . '/vendor/autoload.php';
-
-// Pour ajouter des Bibliothèque : 
-
-    composer require nom/package
