@@ -1,0 +1,15 @@
+{
+    "name": "benie-migan/projet_ga", //a modifier a vos besoins
+    "autoload": {
+        "psr-4": {
+            "BenieMigan\\ProjetGa\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "you@example.com"
+        }
+    ],
+    "require": {}
+}
