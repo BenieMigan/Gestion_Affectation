@@ -1,14 +1,14 @@
 {
-    "name": "gestionaffectation/projet-ga",
-    "autoload": {
-        "psr-4": {
-            "gestionaffectation\\ProjetGa\\": "src/"
-        }
+    "name": "gestionaffectation/projet_ga",
+   "autoload": {
+    "psr-4": {
+        "App\\": "src/"
+    }
     },
     "authors": [
         {
-            "name": "BenieMigan",
-            "email": "beniemigan443@gmail.com"
+            "name": "Your Name",
+            "email": "you@example.com"
         }
     ],
     "require": {}
