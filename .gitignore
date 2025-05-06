@@ -1,3 +1,4 @@
+
 ReadMe
 # Ignorer les fichiers de configuration temporaires
 *.log
@@ -20,4 +21,4 @@ Thumbs.db
 
 # Cache de PHP
 cache/
-vendor/  # au cas où tu utilises Composer plus tard
+/vendor/
