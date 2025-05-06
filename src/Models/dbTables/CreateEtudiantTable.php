@@ -1,5 +1,5 @@
 <?php
-namespace App\Models\DbModels;
+namespace App\Models\dbTables;
 
 use App\Models\GetConnexion;
 use PDO;
@@ -21,7 +21,7 @@ class CreateEtudiantTable
                 CREATE TABLE IF NOT EXISTS etudiants (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     email VARCHAR(255) NOT NULL UNIQUE,
-                    password VARCHAR(255) NOT NULL
+                    etudiantPassword VARCHAR(255) NOT NULL
                 );
             ";
             $this->pdo->exec($sql);

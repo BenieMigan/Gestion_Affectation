@@ -1,10 +1,10 @@
 <?php
-namespace App\Models\DbModels;
+namespace App\Models\dbTables;
 
 use App\Models\GetConnexion;
 use PDO;
 
-class CreateEnseignantTable
+class CreateAdminTable
 {
     private PDO $pdo;
 
@@ -13,24 +13,22 @@ class CreateEnseignantTable
         $this->pdo = $connexion->getPDO();
     }
 
-    // Crée la table 'enseignants'
     public function createTable(): bool
     {
         try {
             $sql = "
-                CREATE TABLE IF NOT EXISTS enseignants (
+                CREATE TABLE IF NOT EXISTS admins (
                     id INT AUTO_INCREMENT PRIMARY KEY,
-                    nom VARCHAR(255) NOT NULL,
-                    prenom VARCHAR(255) NOT NULL,
                     email VARCHAR(255) NOT NULL UNIQUE,
-                    domaine VARCHAR(255) NOT NULL
+                    adminPassword VARCHAR(255) NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
             ";
             $this->pdo->exec($sql);
-            echo "Table 'enseignants' créée avec succès.\n";
+            echo "Table 'admins' créée avec succès.\n";
             return true;
         } catch (\PDOException $e) {
-            echo "Erreur création table 'enseignants' : " . $e->getMessage() . "\n";
+            echo "Erreur création table 'admins' : " . $e->getMessage() . "\n";
             return false;
         }
     }

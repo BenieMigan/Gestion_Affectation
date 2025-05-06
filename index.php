@@ -3,9 +3,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Models\Database;
 use App\Models\GetConnexion;
-use App\Models\DbModels\CreateAdminTable;
-use App\Models\DbModels\CreateEnseignantTable;
-use App\Models\DbModels\CreateEtudiantTable;
+use App\Models\dbTables\CreateAdminTable;
+use App\Models\dbTables\CreateEnseignantTable;
+use App\Models\dbTables\CreateEtudiantTable;
 
 // Paramètres de connexion
 $host = 'localhost';
