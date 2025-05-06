@@ -1,1 +1,23 @@
 ReadMe
+# Ignorer les fichiers de configuration temporaires
+*.log
+*.bak
+*.tmp
+
+# Ignorer les fichiers système
+.DS_Store
+Thumbs.db
+
+# Ignorer les fichiers de base de données binaires ou temporaires
+*.sql~
+*.db
+*.sqlite
+*.env
+
+# Dossiers à ignorer si tu as un éditeur de code
+.vscode/
+.idea/
+
+# Cache de PHP
+cache/
+vendor/  # au cas où tu utilises Composer plus tard
