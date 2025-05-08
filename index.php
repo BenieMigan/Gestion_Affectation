@@ -1,5 +1,9 @@
 <?php
+
+
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/src/Views/etudiants/accueil.php';
+
 
 use App\Models\Database;
 use App\Models\GetConnexion;
@@ -29,3 +33,4 @@ $createEtudiantTable->createTable();
 
 $createEnseignantTable = new CreateEnseignantTable($connexionAvecDb);
 $createEnseignantTable->createTable();
+
