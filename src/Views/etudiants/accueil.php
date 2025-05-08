@@ -40,7 +40,7 @@
         <a href="login.php" class="block w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
           👨‍🎓 Espace Étudiant
         </a>
-        <a href="professeur/login.php" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
+        <a href="professeurs/login.php" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
           🧑‍💼 Espace Responsable
         </a>
         <a href="professeur/login.php" class="block w-full bg-yellow-400 hover:bg-yellow-500 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
