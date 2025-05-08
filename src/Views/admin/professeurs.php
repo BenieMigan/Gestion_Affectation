@@ -9,5 +9,11 @@ return [
         'email' => 'jean.dupont@univ.com',
         'specialite' => ['AL', 'SI']
     ],
-    // d’autres profs...
+    [
+        'nom' => 'Morel',
+        'prenom' => 'Claire',
+        'email' => 'claire.morel@univ.com',
+        'specialite' => ['SRC']
+    ]
 ];
+

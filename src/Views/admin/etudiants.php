@@ -6,15 +6,13 @@ return [
     [
         'nom' => 'Martin',
         'prenom' => 'Lucie',
-        'email' => 'lucie.martin@etu.univ.com'
+        'email' => 'lucie.martin@etu.com'
     ],
-    
     [
-        'nom' => 'LUC',
-        'prenom' => 'Luce',
-        'email' => 'lucie.martin@etu.univ.com'
-    ],
-    // d’autres étudiants...
+        'nom' => 'Durand',
+        'prenom' => 'Paul',
+        'email' => 'paul.durand@etu.com'
+    ]
 ];
 
 
