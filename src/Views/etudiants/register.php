@@ -20,7 +20,7 @@
             </div>
         <?php endif; ?>
 
-        <form action="login.php" method="POST" class="space-y-5">
+        <form action="register_action.php" method="POST" class="space-y-5">
             <div>
                 <label for="nom" class="block mb-1 text-sm font-medium text-gray-700">Nom</label>
                 <input type="text" name="nom" id="nom" required class="w-full px-4 py-2 border rounded-lg">
@@ -42,9 +42,16 @@
             </div>
 
             <div>
-                <label for="specialite" class="block mb-1 text-sm font-medium text-gray-700">Spécialité</label>
-                <input type="text" name="specialite" id="specialite" required class="w-full px-4 py-2 border rounded-lg">
-            </div>
+    <label for="specialite" class="block text-sm font-medium text-gray-700 mb-1">Spécialité</label>
+    <select name="specialite[]" id="specialite" multiple
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-400 focus:outline-none" required>
+        <option value="AL">AL</option>
+        <option value="SRC">SRC</option>
+        <option value="SI">SI</option>
+    </select>
+</div>
+<p class="text-xs text-gray-500">Utilisez Ctrl (ou Cmd sur Mac) pour sélectionner plusieurs spécialités.</p>
+
 
             <button type="submit" class="w-full bg-green-600 text-white font-semibold py-2 rounded-lg hover:bg-green-700 transition">S'inscrire</button>
         </form>

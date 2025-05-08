@@ -32,7 +32,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="infoetudiant.php" method="POST" class="space-y-5">
+            <form action="login_action.php" method="POST" class="space-y-5">
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" name="email" id="email" required
