@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
+use App\Controllers\AuthController;
 use App\Models\Database;
+use App\Models\dbTables\CreateDemandeAffectation;
 use App\Models\GetConnexion;
 use App\Models\dbTables\CreateAdminTable;
 use App\Models\dbTables\CreateEnseignantTable;
@@ -19,6 +21,7 @@ $database->createDatabase('ma_base_test');
 
 // Connexion à la base nouvellement créée
 $connexionAvecDb = new GetConnexion($host, $user, $password, 'ma_base_test');
+AuthController::init($connexionAvecDb);
 
 // Création des tables
 $createAdminTable = new CreateAdminTable($connexionAvecDb);
@@ -29,3 +32,6 @@ $createEtudiantTable->createTable();
 
 $createEnseignantTable = new CreateEnseignantTable($connexionAvecDb);
 $createEnseignantTable->createTable();
+
+$createDemandeAffectationTable = new CreateDemandeAffectation($connexionAvecDb);
+$createDemandeAffectationTable->createTable();
