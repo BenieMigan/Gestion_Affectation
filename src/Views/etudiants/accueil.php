@@ -43,7 +43,7 @@
         <a href="admin/login.php" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
           🧑‍💼 Espace Responsable
         </a>
-        <a href="professeurs/login.php" class="block w-full bg-yellow-400 hover:bg-yellow-500 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
+        <a href="src/Views/professeurs/login.php" class="block w-full bg-yellow-400 hover:bg-yellow-500 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
           👨‍🏫 Espace Professeur
         </a>
       </div>
