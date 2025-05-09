@@ -1,5 +1,9 @@
 <?php
+
+
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/src/Views/etudiants/accueil.php';
+
 
 use App\Controllers\AuthController;
 use App\Models\Database;
@@ -35,3 +39,4 @@ $createEnseignantTable->createTable();
 
 $createDemandeAffectationTable = new CreateDemandeAffectation($connexionAvecDb);
 $createDemandeAffectationTable->createTable();
+
