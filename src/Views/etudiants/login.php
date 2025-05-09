@@ -1,3 +1,9 @@
+<?php
+
+use App\Controllers\AuthController; 
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

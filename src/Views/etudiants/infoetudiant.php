@@ -18,7 +18,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
             <!-- Upload fiche de charge -->
             <a href="formulaire.php" class="block bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-xl p-6 shadow-sm transition">
-                <h2 class="text-lg font-semibold mb-2">📄 Renseignez les informations !</h2>
+                <h2 class="text-lg font-semibold mb-2">Soumettre mon travail</h2>
                 <p class="text-sm">Consultez votre page ! </p>
             </a>
 

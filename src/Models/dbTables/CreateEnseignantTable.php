@@ -27,7 +27,7 @@ class CreateEnseignantTable
                 );
             ";
             $this->pdo->exec($sql);
-            echo "Table 'enseignants' créée avec succès.\n";
+            #echo "Table 'enseignants' créée avec succès.\n";
             return true;
         } catch (\PDOException $e) {
             echo "Erreur création table 'enseignants' : " . $e->getMessage() . "\n";

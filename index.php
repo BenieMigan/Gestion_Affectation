@@ -4,12 +4,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/src/Views/etudiants/acceuil.php'; // Corrige le chemin d'accès
 
 #require_once __DIR__ . '/index.php';
-
-
-<<<<<<< HEAD
-
-?>
-=======
 use App\Controllers\AuthController;
 use App\Models\Database;
 use App\Models\dbTables\CreateDemandeAffectation;
@@ -45,4 +39,3 @@ $createEnseignantTable->createTable();
 $createDemandeAffectationTable = new CreateDemandeAffectation($connexionAvecDb);
 $createDemandeAffectationTable->createTable();
 
->>>>>>> 95b6fbaa42e76b56c6fc73846ae33c11f66c55cd
