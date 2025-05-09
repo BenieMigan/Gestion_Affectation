@@ -37,7 +37,7 @@
       <h3 class="text-2xl font-bold text-gray-800 mb-6">Choisissez votre espace</h3>
 
       <div class="space-y-4">
-        <a href="login.php" class="block w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
+        <a href="src/Views/etudiants/login.php" class="block w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
           👨‍🎓 Espace Étudiant
         </a>
         <a href="src/Views/admin/login.php" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 rounded-xl text-lg font-medium transition duration-300">
