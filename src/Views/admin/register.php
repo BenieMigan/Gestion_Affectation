@@ -16,15 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Les mots de passe ne correspondent pas.";
     }
 
-    // Charger les utilisateurs existants
-    $usersFile = __DIR__ . '/users.json';
-    $users = file_exists($usersFile) ? json_decode(file_get_contents($usersFile), true) : [];
-
-    // Vérifier si l'utilisateur existe déjà
-    if (isset($users[$email])) {
-        $errors[] = "Cet email est déjà enregistré.";
-    }
-
+  
     if (empty($errors)) {
         // Hasher le mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);

@@ -34,7 +34,7 @@
                 <p class="text-sm">Envoyez une demande si aucun encadrant n’est encore affecté.</p>
             </a>
            <!-- Retour -->
-           <a href="./acceuil.php" class="block bg-red-200 hover:bg-red-300 border border-red-300 text-red-800 rounded-xl p-6 shadow-sm transition">
+           <a href="logout.php" class="block bg-red-200 hover:bg-red-300 border border-red-300 text-red-800 rounded-xl p-6 shadow-sm transition">
                 <h2 class="text-lg font-semibold mb-2">Me déconnecter</h2>
                 <p class="text-sm">Quitter votre espace</p>
             </a>

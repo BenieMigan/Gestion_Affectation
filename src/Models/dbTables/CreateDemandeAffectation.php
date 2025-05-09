@@ -22,7 +22,7 @@ class CreateDemandeAffectation
             $sql = "
             CREATE TABLE IF NOT EXISTS soumissions(
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                id_etudiant INT NOT NULL,
+                id_etudiant INT NOT NULL UNIQUE,
                 id_enseignant INT NULL,
                 nomBinome VARCHAR(255) DEFAULT NULL,
                 theme VARCHAR(255) NOT NULL,
