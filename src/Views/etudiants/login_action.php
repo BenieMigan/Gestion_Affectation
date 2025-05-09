@@ -54,9 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['email'] = $user['email'];
         $_SESSION['nom'] = $user['nom'];
         $_SESSION['prenom'] = $user['prenom'];
+        $_SESSION['domaine'] = $user['specialite'];
 
         // Redirection vers la page d'accueil ou une page protégée
-        header('Location: infoetudiant.php');
+        header('Location: infoEtudiant.php');
         exit;
 
     } catch (PDOException $e) {
