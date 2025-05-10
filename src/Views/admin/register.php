@@ -1,7 +1,19 @@
 <?php
-session_start();
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
+use App\Models\GetConnexion;
+
+session_start();
 $errors = [];
+
+// Connexion avec GetConnexion
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'ma_base_test';
+
+$db = new GetConnexion($host, $user, $password, $dbname);
+$pdo = $db->getPDO();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -16,31 +28,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Les mots de passe ne correspondent pas.";
     }
 
-    // Charger les utilisateurs existants
-    $usersFile = __DIR__ . '/users.json';
-    $users = file_exists($usersFile) ? json_decode(file_get_contents($usersFile), true) : [];
-
-    // Vérifier si l'utilisateur existe déjà
-    if (isset($users[$email])) {
-        $errors[] = "Cet email est déjà enregistré.";
+    // Vérifier si l'email existe déjà
+    $stmt = $pdo->prepare("SELECT id FROM admins WHERE email = ?");
+    $stmt->execute([$email]);
+    if ($stmt->fetch()) {
+        $errors[] = "Cet email est déjà utilisé.";
     }
 
     if (empty($errors)) {
-        // Hasher le mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Ajouter le nouvel utilisateur
-        $users[$email] = $hashedPassword;
+        $stmt = $pdo->prepare("INSERT INTO admins (email, password, created_at) VALUES (?, ?, NOW())");
+        $stmt->execute([$email, $hashedPassword]);
 
-        // Sauvegarder
-        file_put_contents($usersFile, json_encode($users, JSON_PRETTY_PRINT));
-
-        // Rediriger vers la page de login
         header('Location: login.php');
         exit;
     }
 }
 ?>
+
+
 
 
 <!DOCTYPE html>

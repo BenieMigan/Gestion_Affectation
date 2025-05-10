@@ -23,11 +23,12 @@ class CreateEnseignantTable
                     nom VARCHAR(255) NOT NULL,
                     prenom VARCHAR(255) NOT NULL,
                     email VARCHAR(255) NOT NULL UNIQUE,
-                    domaine VARCHAR(255) NOT NULL
+                    domaine VARCHAR(255) NOT NULL,
+                    password VARCHAR(255) NOT NULL
                 );
             ";
             $this->pdo->exec($sql);
-            echo "Table 'enseignants' créée avec succès.\n";
+            #echo "Table 'enseignants' créée avec succès.\n";
             return true;
         } catch (\PDOException $e) {
             echo "Erreur création table 'enseignants' : " . $e->getMessage() . "\n";

@@ -18,31 +18,31 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
             <!-- Upload fiche de charge -->
             <a href="formulaire.php" class="block bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-xl p-6 shadow-sm transition">
-                <h2 class="text-lg font-semibold mb-2">📄 Renseignez les informations !</h2>
+                <h2 class="text-lg font-semibold mb-2">Soumettre mon travail</h2>
                 <p class="text-sm">Consultez votre page ! </p>
             </a>
 
             <!-- Suivi encadrant -->
-            <a href="encadreur.php" class="block bg-yellow-100 hover:bg-yellow-200 border border-yellow-300 text-yellow-800 rounded-xl p-6 shadow-sm transition">
-                <h2 class="text-lg font-semibold mb-2">👨‍🏫 Encadrant</h2>
-                <p class="text-sm">Consultez le nom et la spécialité de votre encadrant.</p>
+            <a href="encadreur.php" class="block bg-green-100 hover:bg-green-200 border border-green-300 text-green-800 rounded-xl p-6 shadow-sm transition">
+                <h2 class="text-lg font-semibold mb-2">👨‍🏫 Encadrement</h2>
+                <p class="text-sm">Plus de détails sur les éléments de votre soutenance</p>
             </a>
 
             <!-- Relance encadrant -->
-            <a href="demande_encadrant.php" class="block bg-red-100 hover:bg-red-200 border border-red-300 text-red-800 rounded-xl p-6 shadow-sm transition">
+            <a href="demande_encadrant.php" class="block bg-yellow-100 hover:bg-yellow-200 border border-yellow-300 text-yellow-800 rounded-xl p-6 shadow-sm transition">
                 <h2 class="text-lg font-semibold mb-2">🔔 Relance</h2>
                 <p class="text-sm">Envoyez une demande si aucun encadrant n’est encore affecté.</p>
             </a>
            <!-- Retour -->
-           <a href="accueil.php" class="block bg-green-100 hover:bg-green-200 border border-green-300 text-green-800 rounded-xl p-6 shadow-sm transition">
-                <h2 class="text-lg font-semibold mb-2">Retour a la page d'acceuil</h2>
-                <p class="text-sm">Page d'acceuil</p>
+           <a href="logout.php" class="block bg-red-200 hover:bg-red-300 border border-red-300 text-red-800 rounded-xl p-6 shadow-sm transition">
+                <h2 class="text-lg font-semibold mb-2">Me déconnecter</h2>
+                <p class="text-sm">Quitter votre espace</p>
             </a>
             </div>
 
-            <div class="text-center mt-6">
+        <!--<div class="text-center mt-6">
             <a href="login.php" class="text-sm text-gray-500 hover:underline">Se déconnecter</a>
-        </div>
+        </div>!-->
     </div>
 
 </body>

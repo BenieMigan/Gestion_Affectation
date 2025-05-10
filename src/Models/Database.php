@@ -18,7 +18,7 @@ class Database
         try {
             $sql = "CREATE DATABASE IF NOT EXISTS `$dbName` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
             $this->db->getPDO()->exec($sql);
-            echo "Base de données '$dbName' mise en place \n";
+            #echo "<> Base de données '$dbName' mise en place \n";
             return true;
         } catch (\PDOException $e) {
             echo "Erreur lors de la création de la base de données : " . $e->getMessage();
