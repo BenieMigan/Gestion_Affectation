@@ -20,7 +20,12 @@ if (isset($_SESSION['user_id'])) {
         $id_etudiant = $_SESSION['user_id'];
 
         // Préparation de la requête pour récupérer les soumissions de l'étudiant
-        $stmt = $pdo->prepare("SELECT * FROM soumissions WHERE id_etudiant = :id_etudiant");
+        $stmt = $pdo->prepare("
+            SELECT s.*, ens.nom AS encadrant_nom, ens.prenom AS encadrant_prenom
+            FROM soumissions s
+            LEFT JOIN enseignants ens ON s.id_enseignant = ens.id
+            WHERE s.id_etudiant = :id_etudiant
+        ");
         $stmt->bindParam(':id_etudiant', $id_etudiant, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -57,15 +62,7 @@ if (isset($_SESSION['user_id'])) {
 
         <!-- Affichage des soumissions -->
         <?php if (count($soumissions) > 0): ?>
-            <div class="bg-green-50 border-l-4 border-green-500 text-green-800 p-4 rounded-lg mb-6">
-                <div class="flex items-center gap-2">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    <span>Vous avez des soumissions enregistrées.</span>
-                </div>
-            </div>
-
+           
             <table class="min-w-full table-auto border-collapse rounded-lg overflow-hidden">
                 <thead class="bg-indigo-600 text-white">
                     <tr>
@@ -91,7 +88,13 @@ if (isset($_SESSION['user_id'])) {
                                     Voir le document
                                 </a>
                             </td>
-                            <td class="px-6 py-4"><?= htmlspecialchars($soumission['id_enseignant'] ?? 'Encadrant non attribué') ?></td>
+                            <td class="px-6 py-4">
+                                <?php if ($soumission['encadrant_nom'] && $soumission['encadrant_prenom']): ?>
+                                    <?= htmlspecialchars($soumission['encadrant_prenom']) . ' ' . htmlspecialchars($soumission['encadrant_nom']) ?>
+                                <?php else: ?>
+                                    <span class="text-red-500 italic">Non attribué</span>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

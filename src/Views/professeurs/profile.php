@@ -50,20 +50,19 @@ require_once __DIR__ . '/../../Controllers/TeacherController.php';
                     <table class="min-w-full text-sm text-gray-700">
                         <thead class="bg-blue-100 text-gray-800 font-semibold">
                             <tr>
-                                <th class="py-3 px-4 text-left border-b">Nom</th>
-                                <th class="py-3 px-4 text-left border-b">Prénom</th>
+                                <th class="py-3 px-4 text-left border-b">Etudiant 1</th>
+                                <th class="py-3 px-4 text-left border-b">Etudiant 2</th>
                                 <th class="py-3 px-4 text-left border-b">Thème</th>
-                                <th class="py-3 px-4 text-left border-b">Binôme</th>
                                 <th class="py-3 px-4 text-left border-b">Statut</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($etudiants as $index => $etudiant): ?>
                                 <tr class="<?= $index % 2 === 0 ? 'bg-white' : 'bg-blue-50' ?> hover:bg-blue-100 transition">
-                                    <td class="py-2 px-4 border-b"><?= htmlspecialchars($etudiant['etu_nom']) ?></td>
-                                    <td class="py-2 px-4 border-b"><?= htmlspecialchars($etudiant['etu_prenom']) ?></td>
-                                    <td class="py-2 px-4 border-b"><?= htmlspecialchars($etudiant['theme']) ?></td>
+                                    <td class="py-2 px-4 border-b"><?= htmlspecialchars($etudiant['etu_nom']).''. htmlspecialchars($etudiant['etu_prenom']) ?></td>
                                     <td class="py-2 px-4 border-b"><?= htmlspecialchars($etudiant['nomBinome'] ?: '-') ?></td>
+
+                                    <td class="py-2 px-4 border-b"><?= htmlspecialchars($etudiant['theme']) ?></td>
                                     <td class="py-2 px-4 border-b capitalize"><?= htmlspecialchars($etudiant['statut']) ?></td>
                                 </tr>
                             <?php endforeach; ?>
