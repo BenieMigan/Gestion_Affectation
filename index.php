@@ -11,6 +11,7 @@ use App\Models\GetConnexion;
 use App\Models\dbTables\CreateAdminTable;
 use App\Models\dbTables\CreateEnseignantTable;
 use App\Models\dbTables\CreateEtudiantTable;
+use App\Models\dbTables\CreateRelanceTable;
 
 // Paramètres de connexion
 $host = 'localhost';
@@ -39,3 +40,5 @@ $createEnseignantTable->createTable();
 $createDemandeAffectationTable = new CreateDemandeAffectation($connexionAvecDb);
 $createDemandeAffectationTable->createTable();
 
+$createRelanceTable = new CreateRelanceTable($connexionAvecDb);
+$createRelanceTable->createTable();
