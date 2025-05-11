@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../Controllers/TeacherController.php';
+
 ?>
 
 <!DOCTYPE html>

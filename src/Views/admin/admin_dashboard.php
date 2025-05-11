@@ -23,11 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'delete' && $idEtudiant) {
         $stmt = $pdo->prepare("UPDATE soumissions SET id_enseignant = NULL WHERE id_etudiant = ?");
         $stmt->execute([$idEtudiant]);
-    }elseif ($idEtudiant && $idProf) {
-    $stmt = $pdo->prepare("UPDATE soumissions SET id_enseignant = ?, statut = 'acceptee' WHERE id_etudiant = ?");
-    $stmt->execute([$idProf, $idEtudiant]);
+    } elseif ($action === 'mark_relance' && $idEtudiant) {
+        $stmt = $pdo->prepare("UPDATE relances SET statut = 'traitee' WHERE id_etudiant = ? AND statut = 'en_attente'");
+        $stmt->execute([$idEtudiant]);
+    } elseif ($idEtudiant && $idProf) {
+        $stmt = $pdo->prepare("UPDATE soumissions SET id_enseignant = ?, statut = 'acceptee' WHERE id_etudiant = ?");
+        $stmt->execute([$idProf, $idEtudiant]);
+        
+        // Marquer les relances comme traitées lors de l'affectation
+        $stmt = $pdo->prepare("UPDATE relances SET statut = 'traitee' WHERE id_etudiant = ? AND statut = 'en_attente'");
+        $stmt->execute([$idEtudiant]);
     }
-
 
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
@@ -50,7 +56,17 @@ $affectes = $pdo->query("
     JOIN enseignants ens ON s.id_enseignant = ens.id
     WHERE s.id_enseignant IS NOT NULL
 ")->fetchAll(PDO::FETCH_ASSOC);
+
+$relances = $pdo->query("
+    SELECT r.*, e.nom, e.prenom, e.email, s.theme
+    FROM relances r
+    JOIN etudiants e ON r.id_etudiant = e.id
+    JOIN soumissions s ON r.id_etudiant = s.id_etudiant
+    WHERE r.statut = 'en_attente'
+    ORDER BY r.created_at DESC
+")->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -68,6 +84,14 @@ $affectes = $pdo->query("
         }
         .card:hover {
             transform: translateY(-2px);
+        }
+        .badge-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
         }
     </style>
 </head>
@@ -97,7 +121,7 @@ $affectes = $pdo->query("
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
         <!-- Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div class="bg-white rounded-lg shadow p-6">
                 <div class="flex items-center">
                     <div class="p-3 rounded-full bg-blue-100 text-blue-600 mr-4">
@@ -139,7 +163,82 @@ $affectes = $pdo->query("
                     </div>
                 </div>
             </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Relances</p>
+                        <p class="text-2xl font-semibold text-gray-900"><?= count($relances) ?></p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Section Relances -->
+        <?php if (count($relances) > 0): ?>
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-semibold text-gray-900">Demandes de relance</h2>
+                <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full badge-pulse">
+                    <?= count($relances) ?> nouvelles
+                </span>
+            </div>
+            
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                <ul class="divide-y divide-gray-200">
+                    <?php foreach ($relances as $relance): ?>
+                        <li class="px-4 py-4 sm:px-6">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center">
+                                        <div class="text-sm font-medium text-gray-900">
+                                            <?= htmlspecialchars($relance['prenom'] . ' ' . $relance['nom']) ?>
+                                        </div>
+                                        <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            <?= htmlspecialchars($relance['email']) ?>
+                                        </span>
+                                    </div>
+                                    <div class="mt-2 text-sm text-gray-500">
+                                        <span class="font-medium">Thème :</span> <?= htmlspecialchars($relance['theme']) ?>
+                                    </div>
+                                    <div class="mt-2 p-3 bg-gray-50 rounded-md">
+                                        <p class="text-sm text-gray-700"><?= htmlspecialchars($relance['message']) ?></p>
+                                        <p class="mt-1 text-xs text-gray-500">Envoyé le <?= date('d/m/Y H:i', strtotime($relance['created_at'])) ?></p>
+                                    </div>
+                                </div>
+                                <div class="ml-4 flex flex-col space-y-2">
+                                    <form method="POST" class="flex justify-end">
+                                        <input type="hidden" name="id_etudiant" value="<?= $relance['id_etudiant'] ?>">
+                                        <input type="hidden" name="action" value="mark_relance">
+                                        <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                            Marquer comme traité
+                                        </button>
+                                    </form>
+                                    <form method="POST" class="flex items-center space-x-2">
+                                        <input type="hidden" name="id_etudiant" value="<?= $relance['id_etudiant'] ?>">
+                                        <select name="id_enseignant" required class="block w-full pl-3 pr-10 py-1.5 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                                            <option value="">Affecter à...</option>
+                                            <?php foreach ($profs as $prof): ?>
+                                                <option value="<?= $prof['id'] ?>"><?= htmlspecialchars($prof['prenom'] . ' ' . $prof['nom']) ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                            Valider
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </section>
+        <?php endif; ?>
 
         <!-- Liste des enseignants -->
         <section class="mb-12">
