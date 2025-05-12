@@ -33,18 +33,19 @@ $error = $error ?? '';  // $error sera une chaîne vide si non défini
 
         <!-- Message de succès -->
         <?php if (!empty($_SESSION['success'])): ?>
-            <div class="bg-green-100 text-green-800 px-4 py-3 rounded-lg text-sm text-center mb-4">
-                Votre formulaire a été envoyé avec succès.
+            <div class="bg-green-100 text-green-800 px-3 py-2 rounded-md text-sm border border-green-300">
+                <p class="break-words"><?= htmlspecialchars($_SESSION['success']) ?></p>
             </div>
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
 
         <!-- Message d'erreur -->
         <?php if (!empty($error)): ?>
-            <div class="bg-red-100 text-red-800 px-4 py-3 rounded-lg text-sm text-center mb-4">
-                 <?= htmlspecialchars($error) ?>
+            <div class="bg-red-100 text-red-800 px-3 py-2 rounded-md text-sm border border-red-300">
+                <p class="break-words"><?= htmlspecialchars($error) ?></p>
             </div>
         <?php endif; ?>
+
 
         <form id="formulaire" action="" method="POST" enctype="multipart/form-data" class="space-y-6">
 
