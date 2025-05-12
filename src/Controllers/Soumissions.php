@@ -77,10 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: formulaire.php');
         exit;
 
-    } catch (Exception $e) {
-        echo '<div class="bg-red-100 text-red-700 px-4 py-3 rounded mb-4">';
-        echo 'Erreur : ' . htmlspecialchars($e->getMessage());
-        echo '</div>';
+    }catch (PDOException $e) {
+    if ($e->getCode() == 23000 && str_contains($e->getMessage(), 'Duplicate entry')) {
+        $error = "Vous avez déjà soumis un sujet. Veuillez contacter l'administration pour toute modification.";
+    } else {
+        $error = "Une erreur est survenue. Veuillez réessayer plus tard.";
+    }
     }
 }
 

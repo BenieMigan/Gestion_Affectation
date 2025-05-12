@@ -18,7 +18,7 @@ class CreateRelanceTable
     {
         try {
             $sql = "
-              CREATE TABLE relances (
+              CREATE TABLE IF NOT EXISTS relances (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 id_etudiant INT NOT NULL,
                 id_soumission INT NOT NULL,

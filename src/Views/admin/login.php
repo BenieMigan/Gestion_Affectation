@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<!-- Page de connexion administrateur (admin_login.php) -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -41,35 +42,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Connexion Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold text-center text-blue-800 mb-4">Connexion Administrateur</h2>
-
-        <?php if (!empty($errors)): ?>
-            <div class="mb-4 text-red-600 text-sm">
-                <?php foreach ($errors as $error): ?>
-                    <p><?= htmlspecialchars($error) ?></p>
-                <?php endforeach; ?>
+<body class="bg-gradient-to-br from-gray-100 to-blue-100 min-h-screen flex items-center justify-center">
+    
+    <div class="bg-white shadow-xl rounded-3xl flex flex-col md:flex-row overflow-hidden max-w-4xl w-full">
+        <!-- Illustration ou slogan -->
+        <div class="md:w-1/2 bg-blue-700 text-white flex items-center justify-center p-10">
+            <div class="text-center space-y-4">
+                <h2 class="text-3xl font-extrabold">Bonjour Admin 👨‍💼</h2>
+                <p class="text-lg font-light">Connecte-toi pour accéder au panneau de gestion.</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/726/726476.png" alt="Admin icon" class="w-32 mx-auto">
             </div>
-        <?php endif; ?>
+        </div>
 
-        <form method="POST" class="space-y-5">
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" required class="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
+        <!-- Formulaire -->
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md space-y-6">
+            <h2 class="text-2xl font-semibold text-center text-blue-800">Connexion Administrateur</h2>
 
-            <div class="mb-4">
-                <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
-                <input type="password" id="password" name="password" required class="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            </div>
+            <?php if (!empty($errors)): ?>
+                <div class="mb-4 text-red-600 text-sm">
+                    <?php foreach ($errors as $error): ?>
+                        <p><?= htmlspecialchars($error) ?></p>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
-            <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Se connecter</button>
-        </form>
+            <form method="POST" class="space-y-5">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
-        <p class="mt-4 text-center text-sm text-gray-600">
-            Pas encore de compte ? <a href="register.php" class="text-blue-600 hover:underline">S'inscrire</a>
-        </p>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                    <input type="password" id="password" name="password" required
+                        class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <button type="submit"
+                    class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
+                    Se connecter
+                </button>
+            </form>
+
+            <p class="text-center text-sm text-gray-600">
+                Pas encore de compte ? <a href="register.php" class="text-blue-600 hover:underline">S'inscrire</a>
+            </p>
+        </div>
     </div>
 </body>
 </html>
